@@ -1,0 +1,117 @@
+
+.slideshow_outer {
+	/* set a display width to make the slider look good in case js is disabled */
+	width: 600px;
+	position: relative;
+	padding: 0;
+}
+
+/* create custom forward-backward buttons for this container */
+.slideshow_outer .slideshow_forward,.slideshow_outer .slideshow_back {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	width: 25px;
+	height: 100%;
+	bottom: 0px;
+	right: 5px;
+	background: url(images/forward.png) no-repeat center;
+	z-index: 99;
+}
+
+.slideshow_outer .slideshow_back {
+	left: 5px;
+	background: url(images/back.png) no-repeat center;
+}
+
+/* the width is set to show the number of thumbnails that will be visible */
+.slideshow_inner {
+	position: relative;
+	overflow: hidden;
+	/* set a display width to make the slider look good in case js is disabled */
+	width: 600px;
+	margin: 0px auto 0px;
+}
+
+/* the thumbnails container; */
+.slideshow_items {
+	display: block;
+	position: relative;
+}
+
+/* single element design */
+.slideshow_items div.slideshow_element {
+	position: relative;
+	float: left;
+	width: 600px;
+}
+
+/* Block infos */
+.slideshow_items div.infos {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	color: #bababa;
+	font-size: 12px;
+	padding: 5px;
+	overflow: hidden;
+	max-height: 40%;
+}
+
+.slideshow_items div.infos p {
+	margin: 0;
+}
+
+.slideshow_items a.title {
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+
+.slideshow_items a:hover {
+	text-decoration: underline;
+}
+
+.slideshow_items a {
+	clear: both;
+	color: #fff;
+	display: block;
+}
+
+.slideshow_items a img {
+	border: none;
+}
+
+.slideshow_items .price {
+	display: block;
+	position: absolute;
+	top : 5px;
+	right : 5px;
+	font-size: 16px;
+	color: #fff;
+}
+
+.slideshow_items .details {
+	float: right;
+	width: 180px;
+	margin-left: 15px;
+}
+
+.slideshow_items .slogan {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: red;
+	font-size: 14px;
+	font-weight: bold;
+	display: inline-block;
+	padding: 2px;
+	background: #fff;
+	border: 1px solid #ccc;	
+	z-index: 100;
+}
+
+

@@ -1,0 +1,64 @@
+.vertical_slider_outer {
+	width: 128px;
+	margin: 10px auto 10px;
+	display: block;
+	position: relative;
+}
+/* create custom forward-backward buttons for this container */
+.vertical_slider_outer .vertical_slider_forward,.vertical_slider_outer .vertical_slider_back
+	{
+	display: block;
+	position: relative;
+	clear: both;
+	margin: 0px auto;
+	cursor: pointer;
+	width: 25px;
+	height: 35px;
+	background: url(images/vertical-forward.png) no-repeat center;
+}
+
+.vertical_slider_outer .vertical_slider_back {
+	background: url(images/vertical-back.png) no-repeat center;
+}
+
+/* the width is set to show the number of thumbnails that will be visible */
+.vertical_slider_inner {
+	position: relative;
+	overflow: hidden;
+	/* set a display width to make the slider look good in case js is disabled */
+	width: 128px;
+}
+/* the thumbnails container; set a width on it so everything will be fine */
+.vertical_slider_items {
+	display: block;
+	position: relative;
+}
+/* single element design */
+.vertical_slider_items  div.vertical_slider_element {
+	display: block;
+	position: relative;
+	margin: 0px;
+	font-size: 11px;
+	width: 128px;
+	height: 180px;
+}
+
+.vertical_slider_items a {
+	display: block;
+}
+
+.vertical_slider_items a img {
+	border: none;
+}
+
+.vertical_slider_items div.vertical_slider_element .slogan {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: red;
+	font-weight: bold;
+	display: inline-block;
+	padding: 2px;
+	background: #fff;
+	border: 1px solid #ccc;	
+}

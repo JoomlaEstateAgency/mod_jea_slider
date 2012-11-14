@@ -1,0 +1,73 @@
+/* ----------------IMAGE SLIDER------------- */
+.slider_outer {
+	/* set a display width to make the slider look good in case js is disabled */
+	width: 620px;
+	margin: 10px auto 10px;
+	position: relative;
+}
+
+/* create custom forward-backward buttons for this container */
+.slider_outer .slider_forward,.slider_outer .slider_back {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	width: 25px;
+	height: 100%;
+	bottom: 0px;
+	right: 5px;
+	background: url(images/forward.png) no-repeat center;
+}
+
+.slider_outer .slider_back {
+	left: 5px;
+	background: url(images/back.png) no-repeat center;
+}
+
+/* the width is set to show the number of thumbnails that will be visible */
+.slider_inner {
+	position: relative;
+	overflow: hidden;
+	/* set a display width to make the slider look good in case js is disabled */
+	width: 600px;
+	margin: 0px auto 0px;
+	padding: 10px 0px;
+}
+
+/* the thumbnails container; set a width on it so everything will be fine */
+.slider_items {
+	display: block;
+	position: relative;
+}
+
+/* single element design */
+.slider_items div.slider_element {
+	display: block;
+	position: relative;
+	float: left;
+	font-size: 11px;
+	width: 130px;
+}
+
+
+.slider_items a {
+	/*padding: 0px;
+	margin: 3px 0px 3px;*/
+	display: block;
+	/*padding: 2px;*/
+}
+
+.slider_items div.slider_element .slogan {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: red;
+	font-weight: bold;
+	display: inline-block;
+	padding: 2px;
+	background: #fff;
+	border: 1px solid #ccc;	
+}
+
+.slider_items a img {
+	border: none;
+}
