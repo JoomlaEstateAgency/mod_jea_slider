@@ -17,15 +17,16 @@ class mod_jea_sliderInstallerScript
     /**
      * method to run before an install/update/uninstall method
      *
-     * @return void
+     * @return boolean
      */
     function preflight($type, $parent)
     {
         $jea = JFactory::getXML(JPATH_ROOT.'/administrator/components/com_jea/jea.xml');
         if ((float) $jea->version < 2.2) {
             JError::raiseWarning(500, 'JEA version must be >= 2.2. Please upgrade before JEA component.');
+            return false;
         }
-        return false;
+        return true;
     }
 
 
