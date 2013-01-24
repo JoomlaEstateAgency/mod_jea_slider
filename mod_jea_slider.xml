@@ -10,6 +10,9 @@
 	<version>1.0</version>
 	<description>MOD_JEA_SLIDER_DESC</description>
 
+	<!-- Runs on install/uninstall/update -->
+	<scriptfile>script.php</scriptfile>
+
 	<files>
 		<filename module="mod_jea_slider">mod_jea_slider.php</filename>
 		<folder>assets</folder>

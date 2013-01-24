@@ -52,6 +52,18 @@ class modJeaSliderHelper
         $query->where('p.published=1');
         $query->where('p.language in ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').')');
 
+        // Filter by access level
+        $user = JFactory::getUser();
+        $groups = implode(',', $user->getAuthorisedViewLevels());
+        $query->where('p.access IN ('.$groups.')');
+
+        // Filter by start and end dates.
+        $nullDate = $db->Quote($db->getNullDate());
+        $nowDate  = $db->Quote(JFactory::getDate()->toSql());
+
+        $query->where('(p.publish_up = '.$nullDate.' OR p.publish_up <= '.$nowDate.')');
+        $query->where('(p.publish_down = '.$nullDate.' OR p.publish_down >= '.$nowDate.')');
+
         switch($selection){
             case 'featured':
                 $query->where('p.featured=1');
