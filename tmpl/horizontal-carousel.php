@@ -31,7 +31,7 @@ window.addEvents({
 			thumbsContainer : 'jeaslider_items_{$uid}',
 			itemsVisible : " . $params->get('visible_items', 4) . ",
 			elemsSlide : " . $params->get('slide_items', 3) . ",
-			duration : " . $params->get('slide_duration', 100) . ",
+			duration : " . $params->get('duration', 100) . ",
 			transition: Fx.Transitions.{$fxTransition},
 			itemsSelector: '.slider_element',
 			itemWidth : {$item_width},
