@@ -34,7 +34,7 @@ window.addEvents({
 			duration : " . $params->get('duration', 100) . ",
 			transition: Fx.Transitions.{$fxTransition},
 			itemsSelector: '.slider_element',
-			itemWidth : {$item_width},
+			itemMargin : " . $slide_margin .",
 			showControls: {$show_controls},
 			startIndex:1,
 			autoSlide: {$autoplay},
@@ -67,7 +67,7 @@ window.addEvents({
 
 $document->addStyleDeclaration("
 #jeaslider_outer_{$uid} div.slider_element {
-	margin: 0px {$slide_margin}px 0px;
+	margin: 0 {$slide_margin}px 0 0;
 	width: {$image_width}px;
 }
 ");
@@ -75,7 +75,7 @@ $document->addStyleDeclaration("
 if ($show_controls) {
     $document->addStyleDeclaration("
 #jeaslider_outer_{$uid} {
-	padding: 0px 10px;
+	padding: 0px 30px;
 }");
 }
 

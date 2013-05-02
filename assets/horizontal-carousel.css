@@ -2,7 +2,7 @@
 .slider_outer {
 	/* set a display width to make the slider look good in case js is disabled */
 	width: 620px;
-	margin: 10px auto 10px;
+	margin: 10px 0;
 	position: relative;
 }
 
@@ -29,7 +29,7 @@
 	overflow: hidden;
 	/* set a display width to make the slider look good in case js is disabled */
 	width: 600px;
-	margin: 0px auto 0px;
+	/*margin: 0px auto 0px;*/
 	padding: 10px 0px;
 }
 
@@ -45,6 +45,7 @@
 	position: relative;
 	float: left;
 	font-size: 11px;
+	padding: 5px;
 	width: 130px;
 }
 
