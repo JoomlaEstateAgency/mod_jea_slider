@@ -106,7 +106,7 @@ $document->addStyleDeclaration("
         <?php endif ?>
 
         <div class="infos">
-          <a href="<?php echo $url ?>" title="<?php echo JText::_('COM_JEA_DETAIL') ?>"class="title">
+          <a href="<?php echo $url ?>" title="<?php echo JText::_('COM_JEA_DETAIL') ?>" class="title">
           <?php if (empty($row->title)) {
                 echo JText::sprintf('COM_JEA_PROPERTY_TYPE_IN_TOWN',
                 htmlspecialchars($row->type, ENT_COMPAT, $charset),
