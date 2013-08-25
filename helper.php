@@ -8,6 +8,7 @@
 
 // no direct access
 defined('_JEXEC') or die();
+jimport('joomla.filesystem.folder');
 
 class modJeaSliderHelper
 {
@@ -175,7 +176,7 @@ class modJeaSliderHelper
         if (!empty($images) && is_array($images)) {
 
             $image = array_shift($images);
-            $imagePath = JPATH_ROOT.DS.'images'.DS.'com_jea';
+            $imagePath = JPATH_ROOT . '/images/com_jea';
 
             $width = self::$_params->get('image_width', 164);
             $height = self::$_params->get('image_height', 123);
@@ -183,22 +184,22 @@ class modJeaSliderHelper
             $imageSliderName = $row->id. '-'. $width .'x'. $height .'-'. $image->name;
             $imgURL = JURI::root(true) . '/images/com_jea/slider/'.$imageSliderName;
 
-            if (file_exists($imagePath.DS.'slider'.DS.$imageSliderName)) {
+            if (file_exists($imagePath . '/slider/' . $imageSliderName)) {
                 // If the thumbnail already exists, return it directly
                 return $imgURL;
 
-            } elseif (file_exists($imagePath.DS.'images'.DS.$row->id.DS.$image->name)) {
+            } elseif (file_exists($imagePath . '/images/' . $row->id . '/' . $image->name)) {
                 // If the thumbnail doesn't exist, generate it and output it on the fly
-                if (!JFolder::exists($imagePath.DS.'slider')) {
-                    JFolder::create($imagePath.DS.'slider');
+                if (!JFolder::exists($imagePath . '/slider')) {
+                    JFolder::create($imagePath . '/slider');
                 }
 
-                $JImage = new JImage($imagePath.DS.'images'.DS.$row->id.DS.$image->name);
+                $JImage = new JImage($imagePath . '/images/'. $row->id . '/' . $image->name);
                 $thumb = $JImage->resize($width, $height, true, JImage::SCALE_OUTSIDE);
                 $left = $thumb->getWidth() > $width ? intval(($thumb->getWidth() - $width) / 2) : 0;
                 $top = $thumb->getHeight() > $height ? intval(($thumb->getHeight() - $height) / 2) : 0;
                 $thumb->crop($width, $height, $left, $top, false);
-                $thumb->toFile($imagePath.DS.'slider'.DS.$imageSliderName, IMAGETYPE_JPEG, array('quality'=> 95));
+                $thumb->toFile($imagePath . '/slider/' . $imageSliderName, IMAGETYPE_JPEG, array('quality'=> 95));
 
                 return $imgURL;
             }

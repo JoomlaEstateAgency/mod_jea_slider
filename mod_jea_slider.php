@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-require_once (dirname(__FILE__).DS.'helper.php');
+require_once (dirname(__FILE__) . '/helper.php');
 
 // Load component language
 JFactory::getLanguage()->load('com_jea', JPATH_BASE.'/components/com_jea');
