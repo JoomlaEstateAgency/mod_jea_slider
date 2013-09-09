@@ -70,15 +70,32 @@ var SlideItMoo = new Class({
 		/* all elements are identified on CSS selector (itemsSelector) */
 		this.elements = document.id(this.options.thumbsContainer).getElements(this.options.itemsSelector);
 
-		if (this.elements.length <= this.options.itemsVisible) return;
-		if (this.options.elemsSlide > this.options.itemsVisible) {
-			this.options.elemsSlide = this.options.itemsVisible;
-		}
-
 		// Size of thumbsContainer children
 		var defaultSize = this.elements[0].getSize();
 		this.elementWidth = (this.options.itemWidth || defaultSize.x) + this.options.itemMargin;
 		this.elementHeight = (this.options.itemHeight || defaultSize.y) + this.options.itemMargin;
+
+		/* resizes the container div's according to the number of itemsVisible thumbnails */
+		var overallSize = {};
+		var scrollSize = {};
+		var thumbsSize = {};
+
+		if (this.options.slideVertical) {
+			scrollSize.height = this.options.itemsVisible * this.elementHeight - this.options.itemMargin;
+			thumbsSize.height = this.elements.length * this.elementHeight;
+		} else {
+			overallSize.width = this.options.itemsVisible * this.elementWidth - this.options.itemMargin;
+			scrollSize.width  = this.options.itemsVisible * this.elementWidth - this.options.itemMargin;
+			thumbsSize.width  = this.elements.length * this.elementWidth;
+		}
+		document.id(this.options.overallContainer).set({styles : overallSize});
+		document.id(this.options.elementScrolled).set({styles : scrollSize});
+		document.id(this.options.thumbsContainer).set({styles : thumbsSize});
+
+		if (this.elements.length <= this.options.itemsVisible) return;
+		if (this.options.elemsSlide > this.options.itemsVisible) {
+			this.options.elemsSlide = this.options.itemsVisible;
+		}
 
 		this.direction = this.options.direction;
 		this.currentIndex = this.options.startIndex;
@@ -102,22 +119,6 @@ var SlideItMoo = new Class({
 			if (this.bwd) this.bwd.addEvent('click', this.slide.pass(-1, this));
 		}
 
-		/* resizes the container div's according to the number of itemsVisible thumbnails */
-		var overallSize = {};
-		var scrollSize = {};
-		var thumbsSize = {};
-
-		if (this.options.slideVertical) {
-			scrollSize.height = this.options.itemsVisible * this.elementHeight - this.options.itemMargin;
-			thumbsSize.height = this.elements.length * this.elementHeight;
-		} else {
-			overallSize.width = this.options.itemsVisible * this.elementWidth - this.options.itemMargin;
-			scrollSize.width  = this.options.itemsVisible * this.elementWidth - this.options.itemMargin;
-			thumbsSize.width  = this.elements.length * this.elementWidth;
-		}
-		document.id(this.options.overallContainer).set({styles : overallSize});
-		document.id(this.options.elementScrolled).set({styles : scrollSize});
-		document.id(this.options.thumbsContainer).set({styles : thumbsSize});
 
 		this.myFx = new Fx.Tween(this.options.thumbsContainer, { 
 			property: (this.options.slideVertical ? 'margin-top':'margin-left'),
