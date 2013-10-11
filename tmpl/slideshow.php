@@ -11,7 +11,7 @@ defined('_JEXEC') or die();
 
 $document = JFactory::getDocument();
 
-JHTML::stylesheet('modules/mod_jea_slider/assets/slideshow.css');
+JHtml::stylesheet('modules/mod_jea_slider/assets/slideshow.css');
 JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js', true);
 
 $charset = strtoupper($document->getCharset());
