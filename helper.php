@@ -119,7 +119,13 @@ class modJeaSliderHelper
             $menu = $app->getMenu();
             $items = $menu->getItems('component', 'com_jea');
             $lang = JFactory::getLanguage()->getTag();
+            $user = JFactory::getUser();
+            $viewLevels = $user->getAuthorisedViewLevels();
+
             foreach ($items as $item) {
+                if (!in_array($item->access, $viewLevels)) {
+                    continue;
+                }
                 $layout = isset($item->query['layout']) ? $item->query['layout'] : 'default';
                 $view = isset($item->query['view']) ? $item->query['view'] : '';
 
