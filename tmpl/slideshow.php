@@ -12,7 +12,8 @@ defined('_JEXEC') or die();
 $document = JFactory::getDocument();
 
 JHtml::stylesheet('modules/mod_jea_slider/assets/slideshow.css');
-JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js', true);
+JHtml::_('behavior.framework');
+JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js');
 
 $charset = strtoupper($document->getCharset());
 $image_width = (int) $params->get('image_width', 600);
@@ -117,7 +118,7 @@ $document->addStyleDeclaration("
 
           <?php if ($params->get('show_price', 1)) :?>
           <span class="price">
-            <strong><?php echo JHtml::_('utility.formatPrice', (float) $row->price , JText::_('COM_JEA_CONSULT_US') ) ?></strong> 
+            <strong><?php echo JHtml::_('utility.formatPrice', (float) $row->price , JText::_('COM_JEA_CONSULT_US') ) ?></strong>
             <?php if ($row->transaction_type == 'RENTING' && (float)$row->price != 0.0) echo JText::_('COM_JEA_PRICE_PER_FREQUENCY_'. $row->rate_frequency) ?>
           </span>
           <?php endif ?>
@@ -126,7 +127,7 @@ $document->addStyleDeclaration("
           <div class="details">
             <?php if ($params->get('show_surfaces', 0)) :?>
             <?php if (!empty($row->living_space)): ?>
-            <?php echo JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> : 
+            <?php echo JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> :
             <strong><?php echo JHtml::_('utility.formatSurface', (float) $row->living_space , '-' ) ?></strong><br />
             <?php endif ?>
 

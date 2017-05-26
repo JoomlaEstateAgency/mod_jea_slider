@@ -12,7 +12,8 @@ defined('_JEXEC') or die();
 $document = JFactory::getDocument();
 
 JHtml::stylesheet('modules/mod_jea_slider/assets/vertical-carousel.css');
-JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js', true);
+JHtml::_('behavior.framework');
+JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js');
 
 $charset = strtoupper($document->getCharset());
 $image_width = $params->get('image_width', 164);
@@ -96,7 +97,7 @@ $document->addStyleDeclaration("
   <div id="jeaslider_inner_<?php echo $uid ?>" class="vertical_slider_inner">
     <div id="jeaslider_items_<?php echo $uid ?>" class="vertical_slider_items">
     <?php foreach ($rows as $k => $row) : $url = modJeaSliderHelper::getPropertyRoute($row) ?>
-    <?php 
+    <?php
         if (empty($row->title)) {
             $title = JText::sprintf('COM_JEA_PROPERTY_TYPE_IN_TOWN', htmlspecialchars($row->type, ENT_COMPAT, $charset), htmlspecialchars($row->town, ENT_COMPAT, $charset));
         } else {
@@ -118,18 +119,18 @@ $document->addStyleDeclaration("
         <?php if ($params->get('show_price', 1)) :?>
         <?php echo $row->transaction_type == 'RENTING' ? JText::_('COM_JEA_FIELD_PRICE_RENT_LABEL') :  JText::_('COM_JEA_FIELD_PRICE_LABEL') ?>
         : <strong> <?php echo JHtml::_('utility.formatPrice', (float) $row->price , JText::_('COM_JEA_CONSULT_US') ) ?></strong>
-        <?php if ($row->transaction_type == 'RENTING' && (float)$row->price != 0.0) 
+        <?php if ($row->transaction_type == 'RENTING' && (float)$row->price != 0.0)
               echo JText::_('COM_JEA_PRICE_PER_FREQUENCY_'. $row->rate_frequency) ?>
         <?php endif ?>
 
         <?php if ($params->get('show_surfaces', 0)) :?>
         <?php if (!empty($row->living_space)): ?>
-        <br /><?php echo  JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> : 
+        <br /><?php echo  JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> :
         <strong><?php echo JHtml::_('utility.formatSurface', (float) $row->living_space , '-' ) ?></strong>
         <?php endif ?>
 
         <?php if (!empty($row->land_space)): ?>
-        <br /><?php echo  JText::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> : 
+        <br /><?php echo  JText::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> :
         <strong> <?php echo JHtml::_('utility.formatSurface', (float) $row->land_space , '-' ) ?></strong>
         <?php endif ?>
         <?php endif ?>

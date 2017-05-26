@@ -12,7 +12,8 @@ defined('_JEXEC') or die();
 $document = JFactory::getDocument();
 
 JHtml::stylesheet('modules/mod_jea_slider/assets/horizontal-carousel.css');
-JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js', true);
+JHtml::_('behavior.framework');
+JHtml::script('modules/mod_jea_slider/assets/slideitmoo.js');
 
 $charset = strtoupper($document->getCharset());
 $image_width = $params->get('image_width', 164);
@@ -89,7 +90,7 @@ if ($show_controls) {
   <div id="jeaslider_inner_<?php echo $uid ?>" class="slider_inner">
     <div id="jeaslider_items_<?php echo $uid ?>" class="slider_items">
     <?php foreach ($rows as $k => $row) : $url = modJeaSliderHelper::getPropertyRoute($row) ?>
-    <?php 
+    <?php
         if (empty($row->title)) {
             $title = JText::sprintf('COM_JEA_PROPERTY_TYPE_IN_TOWN', htmlspecialchars($row->type, ENT_COMPAT, $charset), htmlspecialchars($row->town, ENT_COMPAT, $charset));
         } else {
@@ -117,12 +118,12 @@ if ($show_controls) {
 
         <?php if ($params->get('show_surfaces', 0)) :?>
         <?php if (!empty($row->living_space)): ?>
-        <?php echo  JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> : 
+        <?php echo  JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> :
         <strong><?php echo JHtml::_('utility.formatSurface', (float) $row->living_space , '-' ) ?></strong><br />
         <?php endif ?>
 
         <?php if (!empty($row->land_space)): ?>
-        <?php echo  JText::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> : 
+        <?php echo  JText::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> :
         <strong> <?php echo JHtml::_('utility.formatSurface', (float) $row->land_space , '-' ) ?></strong><br />
         <?php endif ?>
         <?php endif ?>
