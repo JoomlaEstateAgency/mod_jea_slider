@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>http://www.sphilip.com</authorUrl>
-	<version>1.1</version>
+	<version>1.2</version>
 	<description>MOD_JEA_SLIDER_DESC</description>
 
 	<!-- Runs on install/uninstall/update -->
