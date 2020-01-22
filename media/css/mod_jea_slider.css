@@ -1,0 +1,37 @@
+
+.jea-slider-item {
+	position: relative;
+}
+
+.slogan {
+	display: block;
+	background-color: #fff;
+	color: #ff0000;
+	font-weight: bold;
+	padding: 5px;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+}
+
+.jea-slider.slideshow a.title {
+	font-size: 1.2rem;
+}
+
+.jea-slider.slideshow .price {
+	
+	font-size: 1.1rem;
+	margin-left: 0.5rem;
+}
+
+.jea-slider.slideshow a.image {
+	display: inline-block;
+	margin-bottom: 0.5rem;
+}
+
+.jea-slider .price {
+	display: inline-block;
+	white-space: nowrap;
+	font-weight: bold;
+	margin-left: 0.3rem;
+}

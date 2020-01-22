@@ -2,51 +2,63 @@
 <extension type="module" version="2.5" method="upgrade">
 	<name>mod_jea_slider</name>
 	<author>Sylvain Philip</author>
-	<creationDate>October 2012</creationDate>
-	<copyright>Copyright (C) 2007 - 2012 sphilip.com. All rights reserved.</copyright>
+	<creationDate>jan 2020</creationDate>
+	<copyright>Copyright (C) 2008 - 2020 sphilip.com. All rights reserved.
+	</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>http://www.sphilip.com</authorUrl>
-	<version>1.2</version>
+	<version>2.0</version>
 	<description>MOD_JEA_SLIDER_DESC</description>
-
-	<!-- Runs on install/uninstall/update -->
-	<scriptfile>script.php</scriptfile>
 
 	<files>
 		<filename module="mod_jea_slider">mod_jea_slider.php</filename>
-		<folder>assets</folder>
 		<folder>language</folder>
 		<folder>tmpl</folder>
 		<filename>mod_jea_slider.xml</filename>
 		<filename>helper.php</filename>
-		<filename>index.html</filename>
 	</files>
+
+	<media destination="mod_jea_slider" folder="media">
+		<folder>css</folder>
+		<folder>fonts</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>
 
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="layout" type="modulelayout"
-				label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
-
-				<field name="selection" type="list" default="featured"
-					label="MOD_JEA_SLIDER_FIELD_SELECTION_LABEL" 
-					description="MOD_JEA_SLIDER_FIELD_SELECTION_DESC">
+				<field
+					name="selection"
+					type="list"
+					default="featured"
+					label="MOD_JEA_SLIDER_FIELD_SELECTION_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SELECTION_DESC"
+				>
 					<option value="featured">MOD_JEA_SLIDER_OPTION_FEATURED_PROPERTIES</option>
 					<option value="latest">MOD_JEA_SLIDER_OPTION_LATEST_PROPERTIES</option>
 					<option value="random">MOD_JEA_SLIDER_OPTION_RANDOM_PROPERTIES</option>
 				</field>
 
-				<field name="transaction_type" type="list"
-					label="MOD_JEA_SLIDER_FIELD_TRANSACTION_TYPE_LABEL" description="MOD_JEA_SLIDER_FIELD_TRANSACTION_TYPE_DESC">
+				<field
+					name="transaction_type"
+					type="list"
+					label="MOD_JEA_SLIDER_FIELD_TRANSACTION_TYPE_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_TRANSACTION_TYPE_DESC"
+				>
 					<option value="">JALL</option>
 					<option value="SELLING">MOD_JEA_SLIDER_OPTION_SELLING</option>
 					<option value="RENTING">MOD_JEA_SLIDER_OPTION_RENTING</option>
 				</field>
 
-				<field name="order_by" type="list" default="created"
-					label="MOD_JEA_SLIDER_FIELD_ORDER_BY_LABEL" 
-					description="MOD_JEA_SLIDER_FIELD_ORDER_BY_DESC">
+				<field
+					name="order_by"
+					type="list"
+					default="created"
+					label="MOD_JEA_SLIDER_FIELD_ORDER_BY_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_ORDER_BY_DESC"
+				>
 					<option value="created">JGLOBAL_FIELD_CREATED_LABEL</option>
 					<option value="ordering">JFIELD_ORDERING_LABEL</option>
 					<option value="price">MOD_JEA_SLIDER_OPTION_PRICE</option>
@@ -54,113 +66,204 @@
 					<option value="random">MOD_JEA_SLIDER_OPTION_RANDOM</option>
 				</field>
 
-				<field name="number_items" type="text" default="12"
+				<field
+					name="number_items"
+					type="text"
+					default="12"
 					label="MOD_JEA_SLIDER_FIELD_NUMBER_ITEMS_LIST_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_NUMBER_ITEMS_LIST_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_NUMBER_ITEMS_LIST_DESC"
+				/>
 
-				<field name="show_price" type="radio" default="1"
-					label="MOD_JEA_SLIDER_FIELD_SHOW_PRICE_LABEL" description="MOD_JEA_SLIDER_FIELD_SHOW_PRICE_DESC">
+				<field
+					name="show_price"
+					type="radio"
+					default="1"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_PRICE_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_PRICE_DESC"
+					class="btn-group btn-group-yesno"
+				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
 
-				<field name="show_surfaces" type="radio" default="0"
-					label="MOD_JEA_SLIDER_FIELD_SHOW_SURFACES_LABEL" description="MOD_JEA_SLIDER_FIELD_SHOW_SURFACES_DESC">
+				<field
+					name="show_surfaces"
+					type="radio"
+					default="0"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_SURFACES_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_SURFACES_DESC"
+					class="btn-group btn-group-yesno"
+				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
 
-				<field name="show_amenities" type="radio" default="0"
-					label="MOD_JEA_SLIDER_FIELD_SHOW_AMENITIES_LABEL" description="MOD_JEA_SLIDER_FIELD_SHOW_AMENITIES_DESC">
+				<field
+					name="show_amenities"
+					type="radio"
+					default="0"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_AMENITIES_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_AMENITIES_DESC"
+					class="btn-group btn-group-yesno"
+				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
 
-				<field name="show_description" type="radio" default="1"
-					label="MOD_JEA_SLIDER_FIELD_SHOW_DESCRIPTION_LABEL" description="MOD_JEA_SLIDER_FIELD_SHOW_DESCRIPTION_DESC">
+				<field
+					name="show_description"
+					type="radio"
+					default="1"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_DESCRIPTION_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_DESCRIPTION_DESC"
+					class="btn-group btn-group-yesno"
+				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
 
-				<field name="image_width" type="text" default="164" size="5" 
+				<field
+					name="image_width"
+					type="text"
+					default="164"
+					size="5"
 					label="MOD_JEA_SLIDER_FIELD_IMAGE_WIDTH_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_IMAGE_WIDTH_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_IMAGE_WIDTH_DESC"
+				/>
 
-				<field name="image_height" type="text" default="123" size="5" 
+				<field
+					name="image_height"
+					type="text"
+					default="123"
+					size="5"
 					label="MOD_JEA_SLIDER_FIELD_IMAGE_HEIGHT_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_IMAGE_HEIGHT_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_IMAGE_HEIGHT_DESC"
+				/>
 
-				<field name="visible_items" type="text" default="4" size="3"  
+				<field
+					name="visible_items"
+					type="text"
+					default="3"
+					size="3"
 					label="MOD_JEA_SLIDER_FIELD_VISIBLE_ITEMS_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_VISIBLE_ITEMS_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_VISIBLE_ITEMS_DESC"
+				/>
 
-				<field name="slide_items" type="text" default="3" size="3"  
+				<field
+					name="slide_items"
+					type="text"
+					default="3"
+					size="3"
 					label="MOD_JEA_SLIDER_FIELD_SLIDE_ITEMS_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_SLIDE_ITEMS_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_SLIDE_ITEMS_DESC"
+				/>
 
-				<field name="slide_margin" type="text" default="15" size="3"  
+				<field
+					name="slide_margin"
+					type="text"
+					default="0"
+					size="3"
 					label="MOD_JEA_SLIDER_FIELD_SLIDE_MARGIN_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_SLIDE_MARGIN_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_SLIDE_MARGIN_DESC"
+				/>
 
-				<field name="autoplay" type="text" default="7000" size="5" 
+				<field
+					name="autoplay"
+					type="text"
+					default="7000"
+					size="5"
 					label="MOD_JEA_SLIDER_FIELD_AUTOPLAY_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_AUTOPLAY_DESC" />
+					description="MOD_JEA_SLIDER_FIELD_AUTOPLAY_DESC"
+				/>
 
-				<field name="show_controls" type="radio" default="0"
-					label="MOD_JEA_SLIDER_FIELD_SHOW_CONTROLS_LABEL" description="MOD_JEA_SLIDER_FIELD_SHOW_CONTROLS_DESC">
+				<field
+					name="vertical"
+					type="radio"
+					default="0"
+					label="MOD_JEA_SLIDER_FIELD_VERTICAL_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_VERTICAL_DESC"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				
+				<field
+					name="show_dots"
+					type="radio"
+					default="1"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_DOTS_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_DOTS_DESC"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="show_arrows"
+					type="list"
+					default="0"
+					label="MOD_JEA_SLIDER_FIELD_SHOW_ARROWS_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SHOW_ARROWS_DESC"
+				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 					<option value="2">MOD_JEA_SLIDER_OPTION_ONMOUSEOVER</option>
 				</field>
+				
+				<field
+					name="transition_effect"
+					type="list"
+					default="ease"
+					label="MOD_JEA_SLIDER_FIELD_SLIDE_EFFECT_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SLIDE_EFFECT_DESC"
+				>
+					<option value="ease">Ease</option>
+					<option value="ease-in">Ease-in</option>
+					<option value="ease-out">Ease-out</option>
+					<option value="ease-in-out">Ease-in-out</option>
+					<option value="linear">Linear</option>
+					<option value="step-start">Step-start</option>
+					<option value="step-end">Step-end</option>
+				</field>
+				
+				<field
+					name="fade"
+					type="radio"
+					default="0"
+					label="MOD_JEA_SLIDER_FIELD_FADE_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_FADE_DESC"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="duration"
+					type="text"
+					default="300"
+					size="5"
+					label="MOD_JEA_SLIDER_FIELD_SLIDE_DURATION_LABEL"
+					description="MOD_JEA_SLIDER_FIELD_SLIDE_DURATION_DESC"
+				/>
 			</fieldset>
 
 			<fieldset name="advanced">
-
-				<field name="transition_effect" type="list" default="Cubic"
-					label="MOD_JEA_SLIDER_FIELD_SLIDE_EFFECT_LABEL"
-					description="MOD_JEA_SLIDER_FIELD_SLIDE_EFFECT_DESC">
-					<option value="Linear">Linear</option>
-					<option value="Quad.easeIn">Quad.easeIn</option>
-					<option value="Quad.easeOut">Quad.easeOut</option>
-					<option value="Quad.easeInOut">Quad.easeInOut</option>
-					<option value="Cubic.easeIn">Cubic.easeIn</option>
-					<option value="Cubic.easeOut">Cubic.easeOut</option>
-					<option value="Cubic.easeInOut">Cubic.easeInOut</option>
-					<option value="Quart.easeIn">Quart.easeIn</option>
-					<option value="Quart.easeOut">Quart.easeOut</option>
-					<option value="Quart.easeInOut">Quart.easeInOut</option>
-					<option value="Quint.easeIn">Quint.easeIn</option>
-					<option value="Quint.easeOut">Quint.easeOut</option>
-					<option value="Quint.easeInOut">Quint.easeInOut</option>
-					<option value="Pow.easeIn">Pow.easeIn</option>
-					<option value="Pow.easeOut">Pow.easeOut</option>
-					<option value="Pow.easeInOut">Pow.easeInOut</option>
-					<option value="Expo.easeIn">Expo.easeIn</option>
-					<option value="Expo.easeOut">Expo.easeOut</option>
-					<option value="Expo.easeInOut">Expo.easeInOut</option>
-					<option value="Circ.easeIn">Circ.easeIn</option>
-					<option value="Circ.easeOut">Circ.easeOut</option>
-					<option value="Circ.easeInOut">Circ.easeInOut</option>
-					<option value="Sine.easeIn">Sine.easeIn</option>
-					<option value="Sine.easeOut">Sine.easeOut</option>
-					<option value="Sine.easeInOut">Sine.easeInOut</option>
-					<option value="Back.easeIn">Back.easeIn</option>
-					<option value="Back.easeOut">Back.easeOut</option>
-					<option value="Back.easeInOut">Back.easeInOut</option>
-					<option value="Bounce.easeIn">Bounce.easeIn</option>
-					<option value="Bounce.easeOut">Bounce.easeOut</option>
-					<option value="Bounce.easeInOut">Bounce.easeInOut</option>
-					<option value="Elastic.easeIn">Elastic.easeIn</option>
-					<option value="Elastic.easeOut">Elastic.easeOut</option>
-					<option value="Elastic.easeInOut">Elastic.easeInOut</option>
-				</field>
-
-				<field name="duration" type="text" default="300" size="5"
-					label="MOD_JEA_SLIDER_FIELD_SLIDE_DURATION_LABEL" description="MOD_JEA_SLIDER_FIELD_SLIDE_DURATION_DESC" />
-
-				<field name="moduleclass_sfx" type="text" default=""
-					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
-
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					default=""
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
 			</fieldset>
 		</fields>
 	</config>

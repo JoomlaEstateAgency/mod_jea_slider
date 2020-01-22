@@ -2,13 +2,15 @@
 /**
  * @package     Joomla.Site
  * @subpackage  mod_jea_slider
- * @copyright   Copyright (C) 2007-2012 PHILIP Sylvain. All rights reserved.
+ * @copyright   Copyright (C) 2008-2020 PHILIP Sylvain. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-// no direct access
-defined('_JEXEC') or die();
+defined('_JEXEC') or die;
 
+/**
+ * @var $params Joomla\Registry\Registry
+ */
 
 require_once (dirname(__FILE__) . '/helper.php');
 
@@ -23,6 +25,4 @@ modJeaSliderHelper::init($params);
 
 $rows = modJeaSliderHelper::getItems();
 
-$uid = uniqid();
-
-require(JModuleHelper::getLayoutPath('mod_jea_slider', $params->get('layout', 'horizontal-carousel')));
+require JModuleHelper::getLayoutPath('mod_jea_slider', $params->get('layout', 'default'));
