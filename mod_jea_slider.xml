@@ -3,12 +3,12 @@
 	<name>mod_jea_slider</name>
 	<author>Sylvain Philip</author>
 	<creationDate>jan 2020</creationDate>
-	<copyright>Copyright (C) 2008 - 2020 sphilip.com. All rights reserved.
+	<copyright>Copyright (C) 2008 sphilip.com. All rights reserved.
 	</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>contact@sphilip.com</authorEmail>
 	<authorUrl>http://www.sphilip.com</authorUrl>
-	<version>2.0</version>
+	<version>3.0.0</version>
 	<description>MOD_JEA_SLIDER_DESC</description>
 
 	<files>
@@ -187,7 +187,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				
+
 				<field
 					name="show_dots"
 					type="radio"
@@ -211,7 +211,7 @@
 					<option value="1">JYES</option>
 					<option value="2">MOD_JEA_SLIDER_OPTION_ONMOUSEOVER</option>
 				</field>
-				
+
 				<field
 					name="transition_effect"
 					type="list"
@@ -227,7 +227,7 @@
 					<option value="step-start">Step-start</option>
 					<option value="step-end">Step-end</option>
 				</field>
-				
+
 				<field
 					name="fade"
 					type="radio"

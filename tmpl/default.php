@@ -5,7 +5,16 @@
  * @copyright   Copyright (C) 2008-2020 PHILIP Sylvain. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
+use Joomla\CMS\Application\SiteApplication;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
+
+assert($params instanceof Registry);
+assert($app instanceof SiteApplication);
 
 /**
  * @var $uid string
@@ -14,14 +23,14 @@ defined('_JEXEC') or die;
  * @var $params Joomla\Registry\Registry
  */
 
-$document = JFactory::getDocument();
+$document = $app->getDocument();
 
-JHtml::stylesheet('mod_jea_slider/slick.css', array('relative' => true));
-JHtml::stylesheet('mod_jea_slider/slick-theme.css', array('relative' => true));
-JHtml::stylesheet('mod_jea_slider/mod_jea_slider.css', array('relative' => true));
+HTMLHelper::stylesheet('mod_jea_slider/slick.css', ['relative' => true]);
+HTMLHelper::stylesheet('mod_jea_slider/slick-theme.css', ['relative' => true]);
+HTMLHelper::stylesheet('mod_jea_slider/mod_jea_slider.css', ['relative' => true]);
 
-JHtml::_('jquery.framework');
-JHtml::script('mod_jea_slider/slick.min.js', array('relative' => true));
+HTMLHelper::_('jquery.framework');
+HTMLHelper::script('mod_jea_slider/slick.min.js', ['relative' => true]);
 
 $charset = strtoupper($document->getCharset());
 $autoplay = (int) $params->get('autoplay', 7000);
@@ -62,14 +71,14 @@ if ($showArrows == 2)
 	$showArrowsScript = <<<JS
 
 	$('#jea-slider-{$module->id} .slick-arrow').css('opacity', 0)
-	
+
 	$('#jea-slider-{$module->id}').on('mouseenter', function() {
 		$('#jea-slider-{$module->id} .slick-arrow').show().css({
 			'opacity': 100,
 			'transition': 'opacity 0.5s linear'
 		});
 	});
-	
+
 	$('#jea-slider-{$module->id}').on('mouseleave', function() {
 		$('#jea-slider-{$module->id} .slick-arrow').css('opacity', 0);
 	});
@@ -107,16 +116,16 @@ if ($margin = $params->get('slide_margin', 0)) {
 			<?php endif ?>
 
 			<?php if ($imgUrl = modJeaSliderHelper::getItemImg($row)): ?>
-			<a href="<?php echo $url ?>" title="<?php echo JText::_('COM_JEA_DETAIL') ?>" class="image">
-				<img src="<?php echo $imgUrl ?>" alt="<?php echo JText::_('COM_JEA_DETAIL') ?>" />
+			<a href="<?php echo $url ?>" title="<?php echo Text::_('COM_JEA_DETAIL') ?>" class="image">
+				<img src="<?php echo $imgUrl ?>" alt="<?php echo Text::_('COM_JEA_DETAIL') ?>" />
 			</a>
 			<?php endif ?>
 
 			<div class="infos">
 
-				<a href="<?php echo $url ?>" title="<?php echo JText::_('COM_JEA_DETAIL') ?>" class="title">
+				<a href="<?php echo $url ?>" title="<?php echo Text::_('COM_JEA_DETAIL') ?>" class="title">
 				<?php echo empty($row->title) ?
-					JText::sprintf('COM_JEA_PROPERTY_TYPE_IN_TOWN',
+					Text::sprintf('COM_JEA_PROPERTY_TYPE_IN_TOWN',
 						htmlspecialchars($row->type, ENT_COMPAT, $charset),
 						htmlspecialchars($row->town, ENT_COMPAT, $charset)
 					) :
@@ -125,9 +134,9 @@ if ($margin = $params->get('slide_margin', 0)) {
 
 				<?php if ($params->get('show_price', 1)) :?>
 				<span class="price">
-				<strong><?php echo JHtml::_('utility.formatPrice', (float) $row->price , JText::_('COM_JEA_CONSULT_US') ) ?></strong>
+				<strong><?php echo HTMLHelper::_('utility.formatPrice', (float) $row->price , Text::_('COM_JEA_CONSULT_US') ) ?></strong>
 				<?php if ($row->transaction_type == 'RENTING' && (float)$row->price != 0.0)
-					echo JText::_('COM_JEA_PRICE_PER_FREQUENCY_'. $row->rate_frequency) ?>
+					echo Text::_('COM_JEA_PRICE_PER_FREQUENCY_'. $row->rate_frequency) ?>
 				</span>
 				<?php endif ?>
 
@@ -135,20 +144,20 @@ if ($margin = $params->get('slide_margin', 0)) {
 				<div class="details">
 					<?php if ($params->get('show_surfaces', 0)) :?>
 					<?php if (!empty($row->living_space)): ?>
-					<?php echo JText::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> :
-					<strong><?php echo JHtml::_('utility.formatSurface', (float) $row->living_space , '-' ) ?></strong><br />
+					<?php echo Text::_('COM_JEA_FIELD_LIVING_SPACE_LABEL') ?> :
+					<strong><?php echo HTMLHelper::_('utility.formatSurface', (float) $row->living_space , '-' ) ?></strong><br />
 					<?php endif ?>
 
 					<?php if (!empty($row->land_space)): ?>
-					<?php echo JText::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> : <strong>
-					<?php echo JHtml::_('utility.formatSurface', (float) $row->land_space , '-' ) ?></strong><br />
+					<?php echo Text::_('COM_JEA_FIELD_LAND_SPACE_LABEL') ?> : <strong>
+					<?php echo HTMLHelper::_('utility.formatSurface', (float) $row->land_space , '-' ) ?></strong><br />
 					<?php endif ?>
 
 					<?php endif ?>
 
 					<?php if ($params->get('show_amenities', 0) && !empty($row->amenities)) : ?>
-					<strong><?php echo JText::_('COM_JEA_AMENITIES') ?> : </strong>
-					<?php echo JHtml::_('amenities.bindList', $row->amenities) ?>
+					<strong><?php echo Text::_('COM_JEA_AMENITIES') ?> : </strong>
+					<?php echo HTMLHelper::_('amenities.bindList', $row->amenities) ?>
 					<?php endif ?>
 				</div>
 				<?php endif ?>

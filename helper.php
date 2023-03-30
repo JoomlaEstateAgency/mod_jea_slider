@@ -6,6 +6,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Image\Image;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\Database\DatabaseDriver;
+use Joomla\CMS\Application\SiteApplication;
+
 defined('_JEXEC') or die;
 
 class modJeaSliderHelper
@@ -24,8 +32,11 @@ class modJeaSliderHelper
 		$selection = $params->get('selection', 'featured');
 		$limit = (int) $params->get('number_items', 5);
 		$transaction_type = $params->get('transaction_type', '');
+		$transaction_type = $params->get('transaction_type', '');
 
-		$db = JFactory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseDriver::class);
+		assert($db instanceof DatabaseDriver);
+
 		$query = $db->getQuery(true);
 
 		$query->select('p.*');
@@ -48,16 +59,16 @@ class modJeaSliderHelper
 		$query->join('LEFT', '#__jea_slogans AS s ON s.id = p.slogan_id');
 
 		$query->where('p.published=1');
-		$query->where('p.language in (' . $db->quote(JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
+		$query->where('p.language in (' . $db->quote(Factory::getApplication()->getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
 
 		// Filter by access level
-		$user = JFactory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 		$groups = implode(',', $user->getAuthorisedViewLevels());
 		$query->where('p.access IN (' . $groups . ')');
 
 		// Filter by start and end dates.
 		$nullDate = $db->Quote($db->getNullDate());
-		$nowDate = $db->Quote(JFactory::getDate()->toSql());
+		$nowDate = $db->Quote(Factory::getDate()->toSql());
 
 		$query->where('(p.publish_up = ' . $nullDate . ' OR p.publish_up <= ' . $nowDate . ')');
 		$query->where('(p.publish_down = ' . $nullDate . ' OR p.publish_down >= ' . $nowDate . ')');
@@ -119,11 +130,13 @@ class modJeaSliderHelper
 				'renting' => 0,
 				'selling' => 0
 			);
-			$app = JFactory::getApplication();
+			$app = Factory::getApplication();
+			assert($app instanceof SiteApplication);
+
 			$menu = $app->getMenu();
 			$items = $menu->getItems('component', 'com_jea');
-			$lang = JFactory::getLanguage()->getTag();
-			$user = JFactory::getUser();
+			$lang = Factory::getApplication()->getLanguage()->getTag();
+			$user = Factory::getApplication()->getIdentity();
 			$viewLevels = $user->getAuthorisedViewLevels();
 
 			foreach ($items as $item)
@@ -148,7 +161,7 @@ class modJeaSliderHelper
 
 					if ($layout == 'default')
 					{
-						$type = $item->params->get('filter_transaction_type');
+						$type = $item->getParams()->get('filter_transaction_type');
 
 						if ($type == 'SELLING' && empty($menuItems['selling']))
 						{
@@ -184,7 +197,7 @@ class modJeaSliderHelper
 			$url .= '&Itemid=' . $menuItems['both'];
 		}
 
-		return JRoute::_($url);
+		return Route::_($url);
 	}
 
 	public static function getItemImg (&$row)
@@ -201,7 +214,7 @@ class modJeaSliderHelper
 			$height = self::$_params->get('image_height', 123);
 
 			$imageSliderName = $row->id . '-' . $width . 'x' . $height . '-' . $image->name;
-			$imgURL = JURI::root(true) . '/images/com_jea/slider/' . $imageSliderName;
+			$imgURL = Uri::root(true) . '/images/com_jea/slider/' . $imageSliderName;
 
 			if (file_exists($imagePath . '/slider/' . $imageSliderName))
 			{
@@ -211,13 +224,13 @@ class modJeaSliderHelper
 			elseif (file_exists($imagePath . '/images/' . $row->id . '/' . $image->name))
 			{
 				// If the thumbnail doesn't exist, generate it and output it on the fly
-				if (! JFolder::exists($imagePath . '/slider'))
+				if (! Folder::exists($imagePath . '/slider'))
 				{
-					JFolder::create($imagePath . '/slider');
+					Folder::create($imagePath . '/slider');
 				}
 
-				$JImage = new JImage($imagePath . '/images/' . $row->id . '/' . $image->name);
-				$thumb = $JImage->resize($width, $height, true, JImage::SCALE_OUTSIDE);
+				$JImage = new Image($imagePath . '/images/' . $row->id . '/' . $image->name);
+				$thumb = $JImage->resize($width, $height, true, Image::SCALE_OUTSIDE);
 				$left = $thumb->getWidth() > $width ? intval(($thumb->getWidth() - $width) / 2) : 0;
 				$top = $thumb->getHeight() > $height ? intval(($thumb->getHeight() - $height) / 2) : 0;
 				$thumb->crop($width, $height, $left, $top, false);

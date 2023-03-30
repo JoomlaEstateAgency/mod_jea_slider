@@ -6,23 +6,25 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\Application\SiteApplication;
+use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\Registry\Registry;
+
 defined('_JEXEC') or die;
 
-/**
- * @var $params Joomla\Registry\Registry
- */
+assert($params instanceof Registry);
+assert($app instanceof SiteApplication);
 
 require_once (dirname(__FILE__) . '/helper.php');
 
 // Load component language
-JFactory::getLanguage()->load('com_jea', JPATH_BASE.'/components/com_jea');
-
+$app->getLanguage()->load('com_jea', JPATH_BASE.'/components/com_jea');
 
 // Declare JEA helpers
-JHtml::addIncludePath(JPATH_BASE.'/components/com_jea/helpers/html');
+HTMLHelper::addIncludePath(JPATH_BASE.'/components/com_jea/helpers/html');
 
 modJeaSliderHelper::init($params);
-
 $rows = modJeaSliderHelper::getItems();
 
-require JModuleHelper::getLayoutPath('mod_jea_slider', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_jea_slider', $params->get('layout', 'default'));
